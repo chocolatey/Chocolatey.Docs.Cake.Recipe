@@ -18,7 +18,7 @@ object ChocoDocsCakeRecipe : BuildType({
 
     params {
         param("env.vcsroot.branch", "%vcsroot.branch%")
-        param("env.Git_Branch", "%teamcity.build.vcs.branch.ChocolateyDocsCakeRecipe_ChocoDocsCakeRecipeVcsRoot%")
+        param("env.Git_Branch", "%teamcity.build.vcs.branch.ChocolateyDocsCakeRecipe_ChocoDocsCakeVcsRoot%")
         param("teamcity.git.fetchAllHeads", "true")
         password("env.GITHUB_PAT", "%system.GitHubPAT%", display = ParameterDisplay.HIDDEN, readOnly = true)
     }

@@ -115,8 +115,10 @@ BuildParameters.Tasks.PublishDocumentationTask = Task("Publish-Documentation")
 
     Information("Sync output files...");
 
-    Kudu.Sync(buildData.OutputDirectory, publishFolder, new KuduSyncSettings {
-        ArgumentCustomization = args=>args.Append("--ignore").AppendQuoted(".git;CNAME")
+    RequireTool(ToolSettings.KuduSyncGlobalTool, () => {
+        Kudu.Sync(buildData.OutputDirectory, publishFolder, new KuduSyncSettings {
+            ArgumentCustomization = args=>args.Append("--ignore").AppendQuoted(".git;CNAME")
+        });
     });
 
     if (GitHasUncommitedChanges(publishFolder))

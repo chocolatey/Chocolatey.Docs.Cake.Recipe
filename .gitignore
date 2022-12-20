@@ -258,7 +258,7 @@ tools/*
 BuildArtifacts/
 *.temp.nuspec
 tests/integration/repos/
-Chocolatey.Cake.Recipe/Content/version.cake
+Chocolatey.Docs.Cake.Recipe/Content/version.cake
 
 # Cake.Graph related
 docs/input/tasks/*
@@ -269,3 +269,4 @@ docs/config.wyam.hash
 docs/config.wyam.packages.xml
 
 *.orig
+.DS_Store

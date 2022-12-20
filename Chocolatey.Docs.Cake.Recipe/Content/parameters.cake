@@ -3,6 +3,7 @@ public static class BuildParameters
     public static FilePath ProjectFilePath { get; private set; }
     public static DirectoryPath PublishDirectory { get; private set; }
     public static DirectoryPath OutputDirectory { get; private set; }
+    public static string VirtualDirectory { get; private set;}
     public static BuildTasks Tasks { get; set; }
     public static Cake.Core.Configuration.ICakeConfiguration CakeConfiguration { get; private set; }
     public static string Target { get; private set; }
@@ -24,6 +25,7 @@ public static class BuildParameters
         context.Information("ProjectFilePath: {0}", ProjectFilePath);
         context.Information("PublishDirectory: {0}", PublishDirectory);
         context.Information("OutputDirectory: {0}", OutputDirectory);
+        context.Information("VirtualDirectory: {0}", VirtualDirectory);
         context.Information("Target: {0}", Target);
         context.Information("------------------------------------------------------------------------------------------");
     }
@@ -32,7 +34,8 @@ public static class BuildParameters
         ICakeContext context,
         FilePath projectFilePath,
         DirectoryPath publishDirectory = null,
-        DirectoryPath outputDirectory = null)
+        DirectoryPath outputDirectory = null,
+        string virtualDirectory = null)
     {
         if (context == null)
         {
@@ -52,6 +55,7 @@ public static class BuildParameters
         ProjectFilePath = projectFilePath;
         PublishDirectory = publishDirectory;
         OutputDirectory = outputDirectory;
+        VirtualDirectory = virtualDirectory;
         CakeConfiguration = context.GetConfiguration();
         Target = context.Argument("target", "Default");
     }

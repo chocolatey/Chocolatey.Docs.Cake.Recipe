@@ -6,10 +6,11 @@ public class BuildData
     public FilePath ProjectFilePath { get; set; }
     public DirectoryPath PublishDirectory { get; set; }
     public DirectoryPath OutputDirectory { get; set; }
+    public string VirtualDirectory { get; set; }
     public string Target { get; private set; }
     public string Configuration { get; private set; }
 
-    public BuildData(ICakeContext context, FilePath projectFilePath, DirectoryPath publishDirectory, DirectoryPath outputDirectory)
+    public BuildData(ICakeContext context, FilePath projectFilePath, DirectoryPath publishDirectory, DirectoryPath outputDirectory, string virtualDirectory)
     {
         if (context == null)
         {
@@ -22,6 +23,7 @@ public class BuildData
         ProjectFilePath = projectFilePath;
         PublishDirectory = publishDirectory;
         OutputDirectory = outputDirectory;
+        VirtualDirectory = virtualDirectory;
         Configuration = context.Argument("configuration", "Release");
     }
 }

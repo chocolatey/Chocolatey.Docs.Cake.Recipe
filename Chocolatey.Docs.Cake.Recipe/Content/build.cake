@@ -6,7 +6,7 @@ Setup<BuildData>(context =>
 {
     Information("Setting up BuildData...");
 
-    var buildData = new BuildData(context, BuildParameters.ProjectFilePath, BuildParameters.PublishDirectory, BuildParameters.OutputDirectory);
+    var buildData = new BuildData(context, BuildParameters.ProjectFilePath, BuildParameters.PublishDirectory, BuildParameters.OutputDirectory, BuildParameters.VirtualDirectory);
 
     return buildData;
 });
@@ -64,7 +64,14 @@ BuildParameters.Tasks.StatiqPreviewTask = Task("Statiq-Preview")
       Configuration = buildData.Configuration
     };
 
-    DotNetRun(buildData.ProjectFilePath.FullPath, new ProcessArgumentBuilder().Append(string.Format("preview --output \"{0}\"", buildData.OutputDirectory)), settings);
+    var argumentBuilder = new ProcessArgumentBuilder().Append(string.Format("preview --output \"{0}\"", buildData.OutputDirectory));
+
+    if (buildData.VirtualDirectory != null)
+    {
+        argumentBuilder = argumentBuilder.Append(string.Format(" --virtual-dir \"{0}\"", buildData.VirtualDirectory));
+    }
+
+    DotNetRun(buildData.ProjectFilePath.FullPath, argumentBuilder, settings);
 });
 
 BuildParameters.Tasks.StatiqBuildTask = Task("Statiq-Build")
@@ -154,7 +161,7 @@ BuildParameters.Tasks.PublishDocumentationTask = Task("Publish-Documentation")
 BuildParameters.Tasks.DefaultTask = Task("Default")
     .IsDependentOn("Statiq-Preview");
 
-    ///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 // EXECUTION
 ///////////////////////////////////////////////////////////////////////////////
 

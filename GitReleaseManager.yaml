@@ -1,12 +1,12 @@
 issue-labels-include:
   - Breaking Change
-  - Deprecate  
+  - Deprecate
   - Feature
-  - C4B Feature  
+  - C4B Feature
   - Bug
   - Improvement
   - Documentation
-  - Dependency Change  
+  - Dependency Change
 issue-labels-exclude:
   - Internal Refactoring
   - BuildAutomation
@@ -20,7 +20,7 @@ issue-labels-alias:
     plural:  Bug Fixes
   - name:    Deprecate
     header:  Deprecated Feature
-    plural:  Deprecated Features    
+    plural:  Deprecated Features
 create:
   include-sha-section: true
   sha-section-heading: "SHA256 Hashes of the release artifacts"

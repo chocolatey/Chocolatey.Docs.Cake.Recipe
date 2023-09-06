@@ -2,7 +2,7 @@
 // ADDINS
 ///////////////////////////////////////////////////////////////////////////////
 
-#addin nuget:?package=Cake.Git&version=2.0.0
+#addin nuget:?package=Cake.Git&version=1.0.0
 #addin nuget:?package=Cake.Kudu&version=2.0.0
 #addin nuget:?package=Cake.Gulp&version=2.0.0
 #addin nuget:?package=Cake.Yarn&version=0.4.8

@@ -47,17 +47,15 @@ BuildParameters.Tasks.YarnInstallTask = Task("Yarn-Install")
     }
 });
 
-BuildParameters.Tasks.RunGulpTask = Task("Run-Gulp")
-    .WithCriteria(() => FileExists("./gulpfile.js"), "gulpfile.js file not found in repository")
+BuildParameters.Tasks.RunChocoThemeTask = Task("Run-Choco-Theme")
     .IsDependentOn("Yarn-Install")
     .Does(() =>
 {
-    Gulp.Local.Execute();
+    Yarn.RunScript("choco-theme");
 });
 
-
 BuildParameters.Tasks.StatiqPreviewTask = Task("Statiq-Preview")
-    .IsDependentOn("Run-Gulp")
+    .IsDependentOn("Run-Choco-Theme")
     .Does<BuildData>((context, buildData) =>
 {
     var settings = new DotNetRunSettings {
@@ -75,7 +73,7 @@ BuildParameters.Tasks.StatiqPreviewTask = Task("Statiq-Preview")
 });
 
 BuildParameters.Tasks.StatiqBuildTask = Task("Statiq-Build")
-    .IsDependentOn("Run-Gulp")
+    .IsDependentOn("Run-Choco-Theme")
     .Does<BuildData>((context, buildData) =>
 {
     var settings = new DotNetRunSettings {
@@ -86,7 +84,7 @@ BuildParameters.Tasks.StatiqBuildTask = Task("Statiq-Build")
 });
 
 BuildParameters.Tasks.StatiqLinkValidationTask = Task("Statiq-LinkValidation")
-    .IsDependentOn("Run-Gulp")
+    .IsDependentOn("Run-Choco-Theme")
     .Does<BuildData>((context, buildData) =>
 {
     var settings = new DotNetRunSettings {

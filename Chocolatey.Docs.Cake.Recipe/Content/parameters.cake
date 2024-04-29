@@ -6,6 +6,7 @@ public static class BuildParameters
     public static string VirtualDirectory { get; private set;}
     public static BuildTasks Tasks { get; set; }
     public static Cake.Core.Configuration.ICakeConfiguration CakeConfiguration { get; private set; }
+    public static int Port { get; private set; }
     public static string Target { get; private set; }
 
     static BuildParameters()
@@ -26,6 +27,7 @@ public static class BuildParameters
         context.Information("PublishDirectory: {0}", PublishDirectory);
         context.Information("OutputDirectory: {0}", OutputDirectory);
         context.Information("VirtualDirectory: {0}", VirtualDirectory);
+        context.Information("Port: {0}", Port);
         context.Information("Target: {0}", Target);
         context.Information("------------------------------------------------------------------------------------------");
     }
@@ -57,6 +59,7 @@ public static class BuildParameters
         OutputDirectory = outputDirectory;
         VirtualDirectory = virtualDirectory;
         CakeConfiguration = context.GetConfiguration();
+        Port = context.Argument("port", 5080);
         Target = context.Argument("target", "Default");
     }
 }

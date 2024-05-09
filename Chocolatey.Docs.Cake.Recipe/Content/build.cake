@@ -62,7 +62,7 @@ BuildParameters.Tasks.StatiqPreviewTask = Task("Statiq-Preview")
       Configuration = buildData.Configuration
     };
 
-    var argumentBuilder = new ProcessArgumentBuilder().Append(string.Format("preview --output \"{0}\"", buildData.OutputDirectory));
+    var argumentBuilder = new ProcessArgumentBuilder().Append(string.Format("preview --port {0} --output \"{1}\"", port, buildData.OutputDirectory));
 
     if (buildData.VirtualDirectory != null)
     {
